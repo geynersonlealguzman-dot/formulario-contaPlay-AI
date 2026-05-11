@@ -1,0 +1,19 @@
+{
+  "name": "contaplay-ia-form",
+  "version": "1.0.0",
+  "description": "Formulario de validación para ContaPlay AI",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000 -c-1",
+    "start": "npx http-server",
+    "build": "echo 'No build needed - static site'"
+  },
+  "keywords": [
+    "contaplay",
+    "ai",
+    "formulario",
+    "validacion"
+  ],
+  "author": "",
+  "license": "MIT"
+}
