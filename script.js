@@ -3,12 +3,12 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz4Ul8Qg
 
 // ─── Escala de botones ───
 var scaleConfigs = [
-  { id: 'scale4', max: 5 },
   { id: 'scale5', max: 5 },
   { id: 'scale6', max: 5 },
-  { id: 'scale8', max: 5 },
-  { id: 'scale11', max: 10 },
-  { id: 'scale16', max: 5 },
+  { id: 'scale7', max: 5 },
+  { id: 'scale9', max: 5 },
+  { id: 'scale12', max: 10 },
+  { id: 'scale17', max: 5 },
 ];
 
 scaleConfigs.forEach(function (cfg) {
@@ -40,20 +40,21 @@ function countAnswered() {
   if (document.querySelector('input[name="semestre"]:checked')) count++;
   if (document.querySelectorAll('input[name="herramientas"]:checked').length) count++;
   if (document.querySelector('input[name="dificultad"]:checked')) count++;
-  if (document.querySelector('#scale4 .selected')) count++;
+  if (document.querySelector('input[name="temas-dificiles"]:checked')) count++;
   if (document.querySelector('#scale5 .selected')) count++;
   if (document.querySelector('#scale6 .selected')) count++;
-  if (document.querySelector('#scale8 .selected')) count++;
+  if (document.querySelector('#scale7 .selected')) count++;
+  if (document.querySelector('#scale9 .selected')) count++;
   if (document.querySelector('input[name="tiempo"]:checked')) count++;
   if (document.querySelector('input[name="pago"]:checked')) count++;
-  if (document.querySelector('#scale11 .selected')) count++;
+  if (document.querySelector('#scale12 .selected')) count++;
   if (document.querySelector('input[name="dispositivo"]:checked')) count++;
-  if (document.querySelector('#scale16 .selected')) count++;
+  if (document.querySelector('#scale17 .selected')) count++;
   return count;
 }
 
 function updateProgress() {
-  var pct = Math.round((countAnswered() / 12) * 100);
+  var pct = Math.round((countAnswered() / 13) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = pct + '%';
 }
@@ -92,32 +93,33 @@ function submitForm() {
       msg: 'Por favor selecciona al menos una herramienta (Pregunta 2).',
     },
     { sel: 'input[name="dificultad"]:checked', msg: 'Por favor indica tu mayor dificultad (Pregunta 3).' },
-    { sel: '#scale4 .selected', msg: 'Por favor valora el Motor de Asientos (Pregunta 4).' },
+    { sel: 'input[name="temas-dificiles"]:checked', msg: 'Por favor selecciona el tema más difícil (Pregunta 4).' },
+    { sel: '#scale5 .selected', msg: 'Por favor valora el Motor de Asientos (Pregunta 5).' },
     {
-      sel: '#scale5 .selected',
-      msg: 'Por favor valora la Simulación Empresarial (Pregunta 5).',
+      sel: '#scale6 .selected',
+      msg: 'Por favor valora la Simulación Empresarial (Pregunta 6).',
     },
-    { sel: '#scale6 .selected', msg: 'Por favor valora el Tutor IA (Pregunta 6).' },
-    { sel: '#scale8 .selected', msg: 'Por favor valora la gamificación (Pregunta 8).' },
+    { sel: '#scale7 .selected', msg: 'Por favor valora el Tutor IA (Pregunta 7).' },
+    { sel: '#scale9 .selected', msg: 'Por favor valora la gamificación (Pregunta 9).' },
     {
       sel: 'input[name="tiempo"]:checked',
-      msg: 'Por favor indica cuánto tiempo usarías la app (Pregunta 9).',
+      msg: 'Por favor indica cuánto tiempo usarías la app (Pregunta 10).',
     },
     {
       sel: 'input[name="pago"]:checked',
-      msg: 'Por favor responde si pagarías por el Premium (Pregunta 10).',
+      msg: 'Por favor responde si pagarías por el Premium (Pregunta 11).',
     },
     {
-      sel: '#scale11 .selected',
-      msg: 'Por favor indica si recomendarías ContaPlay AI (Pregunta 11).',
+      sel: '#scale12 .selected',
+      msg: 'Por favor indica si recomendarías ContaPlay AI (Pregunta 12).',
     },
     {
       sel: 'input[name="dispositivo"]:checked',
-      msg: 'Por favor indica qué dispositivo usarías (Pregunta 12).',
+      msg: 'Por favor indica qué dispositivo usarías (Pregunta 13).',
     },
     {
-      sel: '#scale16 .selected',
-      msg: 'Por favor valora la integración institucional (Pregunta 16).',
+      sel: '#scale17 .selected',
+      msg: 'Por favor valora la integración institucional (Pregunta 17).',
     },
   ];
 
@@ -138,19 +140,20 @@ function submitForm() {
     semestre: getRadio('semestre'),
     herramientas: getChecked('herramientas'),
     dificultad: getRadio('dificultad'),
-    scale4: getScale('scale4'),
+    temas_dificiles: getRadio('temas-dificiles'),
     scale5: getScale('scale5'),
     scale6: getScale('scale6'),
+    scale7: getScale('scale7'),
     innovadora: getRadio('innovadora'),
-    scale8: getScale('scale8'),
+    scale9: getScale('scale9'),
     tiempo: getRadio('tiempo'),
     pago: getRadio('pago'),
-    scale11: getScale('scale11'),
+    scale12: getScale('scale12'),
     dispositivo: getRadio('dispositivo'),
     faltante: document.getElementById('faltante').value,
     mejora: document.getElementById('mejora').value,
     temas: getChecked('temas'),
-    scale16: getScale('scale16'),
+    scale17: getScale('scale17'),
     adicional: document.getElementById('adicional').value,
     email: document.getElementById('emailInput').value,
     timestamp: new Date().toISOString(),
